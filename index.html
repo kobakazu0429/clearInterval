@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>clearInterval</title>
+  <script type="text/javascript">
+    var timerArray = new Array();
+
+    function start_interval() {
+      timerArray.push(setInterval("alert('5秒間隔で表示されます。');", 5000));
+      displayTimerCount();
+    }
+
+    function stop_interval() {
+      if (timerArray.length > 0) {
+        for (var i = 0, j = timerArray.length; i < j; i++) {
+          clearInterval(timerArray .shift());
+          displayTimerCount();
+        }
+      }
+    }
+
+    function displayTimerCount() {
+      document.getElementById('timerCount').innerHTML = timerArray.length;
+    }
+  </script>
+</head>
+<body>
+  <input type="button" value="押して" onclick="start_interval();">
+  <input type="button" value="止める" onclick="stop_interval();"><br>
+  動作中タイマーの数：<span id="timerCount">0</span>
+</body>
+</html>
